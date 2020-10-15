@@ -8,6 +8,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="BaseCounter.cs" t="Include" />
+          <e p="GameFlow.cs" t="Include" />
           <e p="Knife.cs" t="Include" />
           <e p="KnifeCOunter.cs" t="Include" />
           <e p="Rotate.cs" t="Include" />

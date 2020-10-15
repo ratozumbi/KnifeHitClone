@@ -7,9 +7,10 @@ public class BaseCounter : MonoBehaviour
 {
     
     public int totalHits = 10;
+    public float spacing = 0.3f;
     
     private int currHits = 0;
-    private List<GameObject> knifes;
+    private List<GameObject> knifes = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +19,10 @@ public class BaseCounter : MonoBehaviour
         {
             var go = Instantiate(
                 Resources.Load<GameObject>("Prefabs/knifeCounter"),
-                new Vector3(0,i*0.3f,0),
-                Quaternion.identity,
                 gameObject.transform);
+            go.name = "knife " + i;
+            go.transform.localPosition = new Vector3(0, i *spacing, 0);
+            go.transform.rotation = Quaternion.Euler(0, 0, -90);
             knifes.Add(go);
         }   
     }
@@ -29,7 +31,7 @@ public class BaseCounter : MonoBehaviour
     {
         knifes[currHits].GetComponent<KnifeCounter>().Disable();
         currHits--;
-
+        print("knifes left " + currHits);
         if (currHits <  0)
         {
             //TODO: trigger end game
