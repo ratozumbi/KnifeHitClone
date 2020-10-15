@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Knife : MonoBehaviour
@@ -11,7 +12,7 @@ public class Knife : MonoBehaviour
     public UnityEvent onHit;
     public UnityEvent onMiss;
     
-    private bool isMoving = true;
+    private bool isMoving = false;
     private Rigidbody2D myRigidbody2D;
     // Start is called before the first frame update
     void Start()
@@ -39,16 +40,26 @@ public class Knife : MonoBehaviour
 
     public void StartMoving()
     {
+        print("go");
         isMoving = true;
     }
     
     public void StopMoving()
     {
+        var btn = GameObject.Find("Fire").GetComponent<Button>();
+        btn.onClick.RemoveListener(StartMoving);
+        
         isMoving = false;
     }
 
     public void MissHit()
     {
+        //not to touch anything
+        gameObject.layer = 0;
+        //remove remaning forces
+        myRigidbody2D.velocity = Vector2.zero;
+        myRigidbody2D.angularVelocity = 0;
+        
         myRigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         myRigidbody2D.AddForce(new Vector2(Random.value * 10,Random.value* 10), ForceMode2D.Impulse);   
         myRigidbody2D.AddTorque(3f,ForceMode2D.Impulse);
