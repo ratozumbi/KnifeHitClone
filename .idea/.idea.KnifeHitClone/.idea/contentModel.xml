@@ -6,9 +6,11 @@
     <e p="D:\dev\KnifeHitClone" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="ItemContador.cs" t="Include" />
         <e p="Scripts" t="Include">
-          <e p="Contador.cs" t="Include" />
+          <e p="BaseCounter.cs" t="Include" />
+          <e p="Knife.cs" t="Include" />
+          <e p="KnifeCOunter.cs" t="Include" />
+          <e p="Rotate.cs" t="Include" />
         </e>
       </e>
       <e p="KnifeHitClone.sln" t="IncludeFlat" />

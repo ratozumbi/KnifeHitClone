@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemContador : MonoBehaviour
+public class Rotate : MonoBehaviour
 {
+
+    public float speed = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,11 +15,6 @@ public class ItemContador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void Disable()
-    {
-        GetComponent<SpriteRenderer>().color = Color.black;
+        transform.Rotate(Vector3.forward,speed * Time.deltaTime);
     }
 }
