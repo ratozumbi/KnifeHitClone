@@ -25,7 +25,7 @@ public class Knife : MonoBehaviour
         
         go = GameObject.Find("EventSystem");
         onHit.AddListener(go.GetComponent<GameFlow>().SpawnNewKnife);
-        onHit.AddListener(go.GetComponent<GameFlow>().PlayHit);
+        // onHit.AddListener(go.GetComponent<GameFlow>().PlayHit); depricated in favour of winning sound
         
         onMiss.AddListener(go.GetComponent<GameFlow>().GameOver);
         onMiss.AddListener(go.GetComponent<GameFlow>().PlayMiss);
@@ -73,15 +73,14 @@ public class Knife : MonoBehaviour
         StopMoving();
         if (other.gameObject.CompareTag("knife"))
         {
-            print("miss");
             onMiss.Invoke();
             MissHit();
         }
         else
         {
-            print("hit");
             onHit.Invoke();
-            myRigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            Destroy(myRigidbody2D); //so the knife spins with the circle
+            // myRigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             transform.SetParent(other.gameObject.transform);
         }
     }
