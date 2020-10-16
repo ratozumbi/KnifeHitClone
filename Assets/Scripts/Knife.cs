@@ -25,8 +25,10 @@ public class Knife : MonoBehaviour
         
         go = GameObject.Find("EventSystem");
         onHit.AddListener(go.GetComponent<GameFlow>().SpawnNewKnife);
+        onHit.AddListener(go.GetComponent<GameFlow>().PlayHit);
         
         onMiss.AddListener(go.GetComponent<GameFlow>().GameOver);
+        onMiss.AddListener(go.GetComponent<GameFlow>().PlayMiss);
     }
 
     // Update is called once per frame
@@ -40,8 +42,8 @@ public class Knife : MonoBehaviour
 
     public void StartMoving()
     {
-        print("go");
         isMoving = true;
+        GameObject.Find("EventSystem").GetComponent<GameFlow>().PlayFire();
     }
     
     public void StopMoving()
@@ -55,29 +57,32 @@ public class Knife : MonoBehaviour
     public void MissHit()
     {
         //not to touch anything
-        gameObject.layer = 0;
+        gameObject.layer = LayerMask.NameToLayer("nothing");
         //remove remaning forces
         myRigidbody2D.velocity = Vector2.zero;
         myRigidbody2D.angularVelocity = 0;
         
         myRigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-        myRigidbody2D.AddForce(new Vector2(Random.value * 10,Random.value* 10), ForceMode2D.Impulse);   
-        myRigidbody2D.AddTorque(3f,ForceMode2D.Impulse);
+        myRigidbody2D.AddForce(new Vector2( -5, -5), ForceMode2D.Impulse);   
+        myRigidbody2D.AddTorque(10f,ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!isMoving) return; //prevent double miss count-
         StopMoving();
         if (other.gameObject.CompareTag("knife"))
         {
+            print("miss");
             onMiss.Invoke();
             MissHit();
         }
         else
         {
+            print("hit");
             onHit.Invoke();
             myRigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
-            transform.SetParent(other.gameObject.transform);       
+            transform.SetParent(other.gameObject.transform);
         }
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4770077537370313017}
   - component: {fileID: -1735886587398297832}
   m_Layer: 0
-  m_Name: knife
+  m_Name: knive
   m_TagString: knife
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,32 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd62fd2c5302c5e4ab02cc79647e241f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 25
   onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveKnife
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SpawnNewKnife
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onMiss:
     m_PersistentCalls:
       m_Calls: []
